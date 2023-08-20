@@ -25,6 +25,16 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
     rel="stylesheet">
+	
+	<script src="https://www.google.com/recaptcha/api.js?render={6Lcm970nAAAAALHLhQah4US17hqUzXBZrH4EUqTx}"></script>
+      <script>
+          grecaptcha.ready(function () {
+              grecaptcha.execute('{your-site-key}', {action: 'submit'}).then(function (token) {
+                  console.info("got token: " + token);
+                  document.getElementById('g-recaptcha-response').value = token;
+              });
+          });
+      </script>
 </head>
 
 <body id="top" class="dark_theme">
@@ -750,7 +760,7 @@
 
         </div>
 
-        <form action="https://formsubmit.co/benjinochery95@gmail.com" method="POST" class="contact-form">
+        <form action="https://formspree.io/f/mqkvqaob" method="POST" class="contact-form">
 
           <div class="form-wrapper">
 
