@@ -212,6 +212,10 @@ body.active { overflow: hidden; }
   transition: var(--transition-1);
 }
 
+
+
+
+
 .btn-primary { border-color: var(--color-primary); }
 
 .btn-primary:is(:hover, :focus) {
@@ -847,7 +851,7 @@ textarea.input-field {
 
 .input-field:focus + ion-icon { color: var(--raw-seinna); }
 
-.contact .btn-primary {
+.contact .g-recaptcha {
   max-width: unset;
   width: 100%;
   background: var(--color-primary);
