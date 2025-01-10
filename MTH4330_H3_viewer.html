@@ -1,0 +1,52 @@
+<?php
+// Define the file path
+$file_path = __DIR__ . '/MTH4330/HW333.pdf'; // Adjust the path as needed
+
+// Debugging
+$resolved_path = realpath($file_path);
+if (!$resolved_path) {
+    echo "Error: The file does not exist at the path: " . $file_path . "<br>";
+    echo "Current Directory: " . __DIR__ . "<br>";
+    exit;
+}
+
+// If the request is to view the PDF
+if (isset($_GET['action']) && $_GET['action'] === 'view_pdf') {
+    if (file_exists($file_path)) {
+        // Serve the PDF
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="HW3333.pdf"');
+        header('Content-Length: ' . filesize($file_path));
+        readfile($file_path);
+        exit;
+    } else {
+        http_response_code(404);
+        echo "Error: File not found.";
+        exit;
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure PDF Viewer</title>
+    <style>
+        iframe {
+            width: 100%;
+            height: 90vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Predictive Regression Model for Ice Cream Sales</h1>
+    <!-- Embed the PDF -->
+    <iframe src="?action=view_pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
+</body>
+</html>
