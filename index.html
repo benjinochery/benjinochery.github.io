@@ -1,812 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benjino - personal portfolio</title>
-
-  <!-- 
-    - favicon
-	
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-  -->
-  <link rel="icon" type="image/png" href="./assets/images/b-logo.png"/>
-
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!-- 
-    - google font link
-  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome</title>
+  <meta name="description" content="A clean, responsive welcome page." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
-    rel="stylesheet">
-	
-	
-	 <script src="https://www.google.com/recaptcha/api.js"></script>
-	  <script>
-	   function onSubmit(token) {
-		 document.getElementById("my_form").submit();
-	   }
-	 </script>
-	
-	<!--
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-	
-	<script src="https://www.google.com/recaptcha/api.js?render={6Lcm970nAAAAALHLhQah4US17hqUzXBZrH4EUqTx}"></script>
-      <script>
-          grecaptcha.ready(function () {
-              grecaptcha.execute('{your-site-key}', {action: 'submit'}).then(function (token) {
-                  console.info("got token: " + token);
-                  document.getElementById('g-recaptcha-response').value = token;
-              });
-          });
-      </script> -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: #121936;
+      --text: #e8ecff;
+      --muted: #b8c0ff;
+      --accent: #6ea8ff;
+      --accent-2: #9d7bff;
+      --ring: rgba(110,168,255,.4);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 500px at 10% -20%, rgba(157,123,255,.25), transparent 60%),
+        radial-gradient(900px 400px at 90% 0%, rgba(110,168,255,.25), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+
+    /* Header */
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+    .logo{width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow:0 10px 30px rgba(110,168,255,.35)}
+    .brand span{font-weight:800; letter-spacing:.3px}
+    nav{display:flex; gap:16px}
+    nav a{opacity:.85; text-decoration:none; padding:8px 12px; border-radius:10px}
+    nav a:hover{background:rgba(255,255,255,.06); opacity:1}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center; padding:40px 0}
+    .hero h1{font-size:clamp(2.2rem, 4vw, 3.2rem); line-height:1.1; margin:.2em 0 .4em}
+    .hero p{color:var(--muted); max-width:55ch}
+    .cta{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap}
+    .btn{appearance:none; border:none; cursor:pointer; font-weight:600; padding:12px 18px; border-radius:14px; transition:.2s transform, .2s box-shadow}
+    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:white; box-shadow:0 10px 25px rgba(110,168,255,.35)}
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:0 14px 35px rgba(110,168,255,.45)}
+    .btn-ghost{background:rgba(255,255,255,.07); color:var(--text); border:1px solid rgba(255,255,255,.1)}
+    .btn-ghost:hover{transform:translateY(-1px); box-shadow:0 10px 25px rgba(0,0,0,.25)}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:20px; padding:20px; box-shadow: 0 8px 30px rgba(0,0,0,.25);
+      backdrop-filter: blur(6px);
+    }
+
+    .illustration{aspect-ratio:4/3; border-radius:22px; position:relative; overflow:hidden}
+    .blob{position:absolute; inset:-25%; background:radial-gradient(600px 400px at 20% 20%, rgba(157,123,255,.35), transparent 60%), radial-gradient(600px 400px at 80% 80%, rgba(110,168,255,.35), transparent 60%); filter:blur(16px)}
+    .panel{position:absolute; inset:10px; border-radius:16px; background:rgba(6,10,30,.65); border:1px solid rgba(255,255,255,.1); display:grid; place-items:center; text-align:center; padding:16px}
+
+    /* Features */
+    .features{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:32px 0}
+    .feature h3{margin:.2em 0 .2em; font-size:1.05rem}
+    .feature p{color:var(--muted); font-size:.95rem}
+
+    /* Footer */
+    footer{padding:28px 0; color:var(--muted); font-size:.95rem}
+    .footer-inner{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap}
+
+    /* Accessibility */
+    .btn:focus{outline:2px solid var(--ring); outline-offset:2px}
+    a:focus{outline:2px solid var(--ring); outline-offset:2px; border-radius:8px}
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }
+    @media (max-width: 700px){
+      .features{grid-template-columns:1fr}
+      nav{display:none}
+    }
+  </style>
 </head>
-
-<body id="top" class="dark_theme">
-
-  <!-- 
-    - #HEADER
-  -->
-
-  <header class="header" data-header>
-    <div class="container">
-
-      <h1 class="h1 logo">
-        <a href="#">Benjino C<span>.</span></a>
-      </h1>
-
-      <div class="navbar-actions">
-
-        <select name="language" id="lang">
-          <option value="en">En</option>
-        </select>
-
-        <button class="theme-btn" aria-label="Change Theme" title="Change Theme" data-theme-btn>
-          <span class="icon"></span>
-        </button>
-
-      </div>
-
-      <button class="nav-toggle-btn" aria-label="Toggle Menu" title="Toggle Menu" data-nav-toggle-btn>
-        <span class="one"></span>
-        <span class="two"></span>
-        <span class="three"></span>
-      </button>
-
-      <nav class="navbar" data-navbar>
-        <ul class="navbar-list">
-
-          <li>
-            <a href="#home" class="navbar-link">Home.</a>
-          </li>
-
-          <li>
-            <a href="#about" class="navbar-link">About.</a>
-          </li>
-
-          <li>
-            <a href="#skills" class="navbar-link">Skills.</a>
-          </li>
-
-          <li>
-            <a href="#portfolio" class="navbar-link">Portfolio.</a>
-          </li>
-
-          <li>
-            <a href="#contact" class="navbar-link">Contact.</a>
-          </li>
-
-        </ul>
-      </nav>
-
-    </div>
+<body>
+  <header class="container">
+    <a class="brand" href="#" aria-label="Homepage">
+      <div class="logo" aria-hidden="true"></div>
+      <span>Welcome</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-
-
-
-
-  <main>
-    <article class="container">
-
-      <!-- 
-        - #HERO
-      -->
-
-      <section class="hero" id="home">
-	  
-	  
-
-        <figure class="hero-banner">
-		
-		<div class="hero-content">
-
-          <h2 class="h2 hero-title">Work in progress!</h2>
-
-          <a href="#contact" class="btn btn-primary">Get in touch</a>
-
+  <main class="container">
+    <section class="hero" id="about">
+      <div>
+        <h1>Welcome to Your New Page</h1>
+        <p>Create a clean starting point for your website or project. This template is responsive, accessible, and easy to customize—copy it as <code>index.html</code> and you’re ready to go.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#features">Explore Features</a>
+          <a class="btn btn-ghost" href="#contact">Get in Touch</a>
         </div>
-
-          <picture>
-            <source srcset="./assets/images/port_prof.png" media="(min-width: 1000px)">
-            <source srcset="./assets/images/port_prof.png" media="(min-width: 500px)">
-            <img src="./assets/images/port_prof.png" alt="A man in a blue shirt with a happy expression"
-              class="w-100">
-          </picture>
-
-        </figure>
-
-        
-
-        <ul class="hero-social-list">
-
-         
-
-          <li>
-            <a href="https://www.linkedin.com/in/benjino-chery-65bb9b241" class="hero-social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-
-              <div class="tooltip">Linkedin</div>
-            </a>
-          </li>
-
-        </ul>
-
-        <a href="#stats" class="scroll-down">Scroll</a>
-
-      </section>
-
-
-
-
-
-      <!-- 
-        - #STATS
-      -->
-
-      <section class="stats" id="stats">
-        <ul class="stats-list">
-
-          <li>
-            <a href="#" class="stats-card">
-
-              <div class="card-icon">
-                <img src="./assets/images/stats-card_icon-1.png" alt="Badge icon">
-              </div>
-
-              <h2 class="h2 card-title">
-                1+ <strong>Year of Experience</strong>
-              </h2>
-
-              <ion-icon name="chevron-forward-outline"></ion-icon>
-
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="stats-card">
-
-              <div class="card-icon">
-                <img src="./assets/images/stats-card_icon-2.png" alt="Checkmark icon">
-              </div>
-
-              <h2 class="h2 card-title">
-                4+ <strong>Completed Projects</strong>
-              </h2>
-
-              <ion-icon name="chevron-forward-outline"></ion-icon>
-
-            </a>
-          </li>
-
-          
-
-        </ul>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #ABOUT
-      -->
-
-      <section class="about" id="about">
-
-        <figure class="about-banner">
-          <img src="./assets/images/about_me.png" alt="A man with a smiling face"
-            class="w-100">
-        </figure>
-
-        <div class="about-content section-content">
-
-          <p class="section-subtitle">About me</p>
-
-          <h2 class="h3 section-title">Working on a project? I can Help You!</h2>
-
-          <p class="section-text">
-            I'm Benjino Chery, a senior at Baruch College, specializing in Financial Mathematics. 
-			My current focus revolves around enhancing my analytical skills, with a keen interest 
-			in soccer, economics, quantitative analysis, machine learning, and programming. Armed with a robust mathematical 
-			foundation and a fervent interest in cutting-edge technology, I'm eager to apply these skills 
-			to practical scenarios; I am actively seeking opportunities to engage in real-world projects. 
-			My goal is to contribute effectively to projects that require data-driven insights and innovative 
-			problem-solving.
-          </p>
-          <div class="btn-group">
-            <a href="#contact" class="btn btn-secondary">Hire me</a>
-        
-            <a href="Chery_Benjino_24IT.pdf" class="btn btn-primary">Download CV</a>
-        </div>
-        
-
-        </div>
-
-      </section>
-
-
-
-
-
-      <!-- 
-        - #SKILLS
-      -->
-
-      <section class="skills" id="skills">
-
-        <div class="skills-content section-content">
-
-          <p class="section-subtitle">My skills</p>
-
-          <h2 class="h3 section-title">What My Programming Skills Included?</h2>
-
-          <p class="section-text">
-            Proficient in an array of programming languages including Java, C++, 
-			Python, and R. My skill set is rooted in versatility and adaptability; 
-			coupled with an adept command of tools such as Jupyter notebook, InteliJ and Microsoft Office. 
-          </p>
-
-          <div class="skills-toggle" data-toggle-box>
-            <button class="toggle-btn active" data-toggle-btn>Skills</button>
-
-            <button class="toggle-btn" data-toggle-btn>Tools</button>
+      </div>
+      <div class="card illustration" role="img" aria-label="Abstract decorative illustration">
+        <div class="blob"></div>
+        <div class="panel">
+          <div>
+            <h2 style="margin:0 0 6px">Hello 👋</h2>
+            <p style="margin:0; color:var(--muted)">You can put a hero image or logo here</p>
           </div>
-
         </div>
-
-        <div class="skills-box" data-skills-box>
-
-          <ul class="skills-list">
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">C++</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/C++.png" alt="C++ logo">
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">Python</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/Python.png" alt="Python logo">
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">Java</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/Java.png" alt="Java logo">
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">R</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/R_logo.png" alt="R_logo logo">
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">SAS</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/sas.png" alt="SaS logo">
-                </div>
-              </div>
-            </li>
-
-            
-          </ul>
-
-          <ul class="tools-list">
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">MS Office</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/MS.png" alt="MS logo">
-                </div>
-              </div>
-            </li>
-
-        
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">Jupyter</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/Jupyter.png" alt="Jupyter logo">
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">Git</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/git.png" alt="Git logo">
-                </div>
-              </div>
-            </li>
-			
-			     <li>
-              <div class="skill-card">
-                <div class="tooltip">Intelij</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/intelij.png" alt="Intelij logo">
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div class="skill-card">
-                <div class="tooltip">VS Code</div>
-
-                <div class="card-icon">
-                  <img src="./assets/images/vs-code.png" alt="VS Code logo">
-                </div>
-              </div>
-            </li>
-
-   
-          </ul>
-
-        </div>
-
-      </section>
-
-
-
-
-
-      <!-- 
-        - #PROJECTS
-      -->
-
-      <section class="project" id="portfolio">
-
-        <ul class="project-list">
-
-          <li>
-            <div class="project-content section-content">
-
-              <p class="section-subtitle">My Works</p>
-
-              <h2 class="h3 section-title">See My Works, they Will Amaze You.</h2>
-
-              <p class="section-text">
-                Well-documented, clean and easy to understand..!
-              </p>
-
-            </div>
-          </li>
-
-          <li>
-            <a href="./cyclistic.html" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/bike-sharing.png" class="w-100" >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Bike-share Analysis Case Study</h3>
-
-               <!-- <time class="publish-date" datetime="2023-08">August 2023</time>-->
-              </div>
-
-            </a>
-          </li>
-		  <li>
-            <a href="Opt_Pricing_viewer.html" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/buy.png" class="w-100" >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Option Pricing</h3>
-
-               <!-- <time class="publish-date" datetime="2023-08">August 2023</time>-->
-              </div>
-
-            </a>
-          </li>
-		  
-		   <li>
-            <a href="MTH4330_H3_viewer.html" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/ice_cream.png" class="w-100" >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Ice Cream Sales</h3>
-
-               <!-- <time class="publish-date" datetime="2023-08">August 2023</time>-->
-              </div>
-
-            </a>
-          </li>
-<li>
-            <a href="MTH4330_H4_viewer.html" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/H_digits.png" class="w-100" >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Digits Classifier</h3>
-
-               <!-- <time class="publish-date" datetime="2023-08">August 2023</time>-->
-              </div>
-
-            </a>
-          </li>
-          <li>
-            <a href="./Black-Scholes.html" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/black-scholes.png" class="w-100" >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Black-Scholes-Merton Model</h3>
-
-                <!-- <time class="publish-date" datetime="2023-01">January 2023</time> -->
-              </div>
-
-            </a>
-          </li>
-		 
-
-          <li>
-            <a href="adv_proj/adv_proj.html" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/employee.png" class="w-100"
-                  >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Employee Retention</h3>
-
-                <!--<time class="publish-date" datetime="2024-06">June 2024 </time> -->
-              </div>
-
-            </a>
-          </li>
-		  
-		  
-          <li>
-            <a href="tiktok/presentation.html" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/fake_news.png" class="w-100"
-                  >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Claims detection</h3>
-
-                <!--<time class="publish-date" datetime="2024-07">July 2024 </time> -->
-              </div>
-
-            </a>
-          </li> 
-
-          <li>
-            <a href="./smart_Device.htm" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/project-4.png" class="w-100"
-                 >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Smart Device Usage</h3>
-
-                <!-- <time class="publish-date" datetime="2023-08">August 2023</time> -->
-              </div>
-
-            </a>
-          </li>
-
-          <li>
-            <a href="https://sway.office.com/HF1b6UoZ6xl71YBA?ref=Link" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/wellness_app.png" class="w-100"
-                  >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">Smart Device Usage</h3>
-
-               <!-- <time class="publish-date" datetime="2023-08">August 2023</time> -->
-              </div>
-
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="project-card">
-
-              <figure class="card-banner">
-                <img src="./assets/images/project-6.png" class="w-100"
-                  >
-              </figure>
-
-              <div class="card-content">
-                <h3 class="h4 card-title">In Progress</h3>
-
-               <!-- <time class="publish-date" datetime="2022-04">April 2022</time> -->
-              </div>
-
-            </a>
-          </li>
-		  
-		  
-      
-          <li>
-            <button class="load-more">Load more work</button>
-          </li>
-
-        </ul>
-
-      </section>
-
-
-
-
-
-      <!-- 
-        - #CONTACT
-      -->
-
-      <section class="contact" id="contact">
-
-        <div class="contact-content section-content">
-
-          <p class="section-subtitle">Contact</p>
-
-          <h2 class="h3 section-title">Have You Any Project? Please Drop a Message.</h2>
-
-          <p class="section-text">
-            Get in touch and let me know how I can help. Fill out the form and I’ll be in touch as soon as possible.
-          </p>
-
-          <ul class="contact-list">
-
-            <li class="contact-list-item">
-
-              <div class="contact-item-icon">
-                <ion-icon name="location-outline"></ion-icon>
-              </div>
-
-              <div class="wrapper">
-                <h3 class="h4 contact-item-title">Address:</h3>
-
-                <address class="contact-info">
-                 Brooklyn, NY 11203
-                </address>
-              </div>
-
-            </li>
-
-            <li class="contact-list-item">
-
-              
-
-            </li>
-
-            <li class="contact-list-item">
-
-              <div class="contact-item-icon">
-                <ion-icon name="mail-outline"></ion-icon>
-              </div>
-
-              <div class="wrapper">
-                <h3 class="h4 contact-item-title">Email:</h3>
-
-                <a href="benjinochery95@gmail.com" class="contact-info">benjinochery95@gmail.com</a>
-
-                <a href="benjinochery@icloud.com" class="contact-info">benjinochery@icloud.com</a>
-              </div>
-
-            </li>
-
-            <li>
-              <ul class="contac-social-list">
-
-              
-
-                <li>
-                  <a href="https://www.linkedin.com/in/benjino-chery-65bb9b241" class="contact-social-link">
-                    <div class="tooltip">Linkedin</div>
-
-                    <ion-icon name="logo-linkedin"></ion-icon>
-                  </a>
-                </li>
-
-                
-
-              </ul>
-            </li>
-
-          </ul>
-
-        </div>
-
-        <form action="https://formspree.io/f/mqkvqaob" method="POST" id="my_form" class="contact-form">
-
-          <div class="form-wrapper">
-
-            <label for="name" class="form-label">Name</label>
-
-            <div class="input-wrapper">
-
-              <input type="text" name="name" id="name" required placeholder="e.g Johnny Doe" class="input-field">
-
-              <ion-icon name="person-circle"></ion-icon>
-
-            </div>
-
-          </div>
-
-          <div class="form-wrapper">
-
-            <label for="email" class="form-label">Email</label>
-
-            <div class="input-wrapper">
-
-              <input type="email" name="email" id="email" required placeholder="e.g johndoe@mail.com"
-                class="input-field">
-
-              <ion-icon name="mail"></ion-icon>
-
-            </div>
-
-          </div>
-
-          <div class="form-wrapper">
-
-            <label for="phone" class="form-label">Phone</label>
-
-            <div class="input-wrapper">
-
-              <input type="tel" name="phone" id="phone" required placeholder="Phone Number" class="input-field" />
-
-              <ion-icon name="call"></ion-icon>
-
-            </div>
-
-          </div>
-
-          <div class="form-wrapper">
-
-            <label for="message" class="form-label">Message</label>
-
-            <div class="input-wrapper">
-
-              <textarea name="message" id="message" required placeholder="Write message..."
-                class="input-field"></textarea>
-
-              <ion-icon name="chatbubbles"></ion-icon>
-
-            </div>
-
-          </div>
-
-          <!-- <button type="submit" class="btn btn-primary">Send</button> -->
-		  <button type="submit"
-				class="g-recaptcha" 
-				data-sitekey="6Lcm970nAAAAALHLhQah4US17hqUzXBZrH4EUqTx" 
-				data-callback='onSubmit' 
-				data-action='submit'>Send</button>
-
-        </form>
-
-      </section>
-
-    </article>
+      </div>
+    </section>
+
+    <section id="features" class="features" aria-label="Key features">
+      <article class="card feature">
+        <h3>Responsive</h3>
+        <p>Looks great on mobile, tablet, and desktop without extra work.</p>
+      </article>
+      <article class="card feature">
+        <h3>Accessible</h3>
+        <p>Landmarks, focus styles, and contrast help everyone use your site.</p>
+      </article>
+      <article class="card feature">
+        <h3>Easy to Customize</h3>
+        <p>Change colors, text, and layout quickly in one file.</p>
+      </article>
+    </section>
+
+    <section id="contact" class="card" aria-label="Contact">
+      <h3 style="margin-top:0">Contact</h3>
+      <p>Replace this with your own details or link a contact form.</p>
+      <ul>
+        <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
+        <li>Twitter: <a href="#" rel="noopener">@yourhandle</a></li>
+      </ul>
+    </section>
   </main>
 
-
-
-
-
-  <!-- 
-    - #FOOTER
-  -->
-
-  <footer class="footer">
-    <div class="container">
-
-      <p class="h1 logo">
-        <a href="#">
-          Benjino C<span>.</span>
-        </a>
-      </p>
-
-      <p class="copyright">
-        &copy; 2022 <a href="#">codewithsadee</a>. All rights reserved
-      </p>
-
+  <footer>
+    <div class="container footer-inner">
+      <span>&copy; <span id="year"></span> Your Name. All rights reserved.</span>
+      <a href="#top" style="text-decoration:none; opacity:.8">Back to top ↑</a>
     </div>
   </footer>
 
-
-
-
-
-  <!-- 
-    - #GO TO TOP
-  -->
-
-  <a href="#top" class="go-top" data-go-top title="Go to Top">
-    <ion-icon name="arrow-up"></ion-icon>
-  </a>
-
-
-
-
-
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-
-  <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+  <script>
+    // Set current year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
